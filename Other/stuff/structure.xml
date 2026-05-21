@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+    <Product>
+        <Category>Электроника</Category>
+        <Subcategory2>Смартфоны</Subcategory2>
+        <Subcategory3>Аксессуары</Subcategory3>
+        <SKU>12345</SKU>
+        <ModificationSKU>12345-BL</ModificationSKU>
+        <Name>Смартфон SuperPhone 15</Name>
+        <CategoryFullPath>Электроника/Смартфоны/Аксессуары</CategoryFullPath>
+        <Price>59990</Price>
+        <Quantity>15</Quantity>
+        <Description><![CDATA[Здесь ваше описание товара с <b>HTML-тегами</b>.]]></Description>
+        <Manufacturer>GlobalTech</Manufacturer>
+        <Photos>img1.jpg img2.jpg</Photos>
+        <PhotoLinks>https://site.com/1.jpg https://site.com/2.jpg</PhotoLinks>
+        <Characteristics><![CDATA[<table><tr><td>Экран</td><td>6.1</td></tr></table>]]></Characteristics>
+        <OptionColor>Черный</OptionColor>
+    </Product>
+    
+    </Catalog>

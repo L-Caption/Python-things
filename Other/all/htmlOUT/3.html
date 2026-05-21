@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.xml — Каталог товаров</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --border: #252c3a;
+    --accent: #3de8a0;
+    --accent2: #5b8fff;
+    --text: #c8d0e0;
+    --text-dim: #5a6480;
+    --header-bg: #1a2035;
+    --row-even: #161a23;
+    --row-odd: #12151e;
+    --row-hover: #1e2640;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 28px 32px 22px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+
+  header .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+  }
+
+  .search-bar {
+    padding: 14px 32px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-bar input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 7px 12px;
+    outline: none;
+    width: 320px;
+    transition: border-color 0.15s;
+  }
+
+  .search-bar input:focus {
+    border-color: var(--accent);
+  }
+
+  .search-bar label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .count {
+    margin-left: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .count span { color: var(--accent); }
+
+  .table-wrap {
+    overflow-x: auto;
+    padding: 0 0 40px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  thead th {
+    background: var(--header-bg);
+    color: var(--accent2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--accent2);
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  thead th:hover { background: #1f2840; }
+  thead th:last-child { border-right: none; }
+
+  tbody tr.even { background: var(--row-even); }
+  tbody tr.odd  { background: var(--row-odd); }
+  tbody tr:hover { background: var(--row-hover); }
+  tbody tr.hidden { display: none; }
+
+  td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid #1a1f2a;
+    vertical-align: top;
+    line-height: 1.5;
+    max-width: 320px;
+    word-wrap: break-word;
+  }
+
+  td:last-child { border-right: none; }
+
+  .no-results {
+    padding: 40px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--text-dim);
+    font-size: 13px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>// 3.xml — Каталог товаров</h1>
+  <span class="meta">total_records=10</span>
+</header>
+<div class="search-bar">
+  <label>Filter</label>
+  <input type="text" id="search" placeholder="Поиск по всем полям..." oninput="filterTable()">
+  <span class="count">Показано: <span id="visCount">10</span> / 10</span>
+</div>
+<div class="table-wrap">
+  <table id="dataTable">
+    <thead><tr><th>Категория</th><th>Подкатегория 2</th><th>Подкатегория 3</th><th>Артикул</th><th>Артикул модификации</th><th>Имя товара</th><th>Категория (полный путь)</th><th>Цена</th><th>Количество</th><th>Описание</th><th>Производитель</th><th>Фото (через пробел)</th><th>Ссылки на фото (через пробел)</th><th>Характеристики (HTML/Table)</th><th>Опция:Цвет</th></tr></thead>
+    <tbody>
+<tr class="even"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>289279</td><td>289279-розовый</td><td>Самокат Razor A5 Lux</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>8 470,0</td><td>6</td><td>Вес (кг): 3.8; Размеры (см): 89х53х104; подставка; регулировка высоты руля; складываемый; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: алюминий; Кол-во колес: 2-х колесный; Возраст, от (лет): 8; Макс. нагрузка (кг): 100; Тип: самокат Рейтинг модели: 4 из 5 (49 оценок)</td><td>Razor</td><td>289279_1154579496.jpg e5k736vd4h1_400822870.jpg e5k73kzebb1_1662740978.jpg e5k74f880a1_15439717.jpg e5k74rbxbc1_-2054950436.jpg e5k75a7di91_548636320.jpg p560131-0mw_150x150_pc_272289973.jpg 9.4_1813937369.jpg 1017667215_-669085591.jpg p659065-0mw_150x150_pc_1963914162.jpg p560132-0mw_150x150_pc_263680872.jpg</td><td>http://magazilla.ru/jpg_zoom1/289279.jpg http://mzimg.com/big/h1/e5k736vd4h1.jpg http://mzimg.com/big/b1/e5k73kzebb1.jpg http://mzimg.com/big/a1/e5k74f880a1.jpg http://mzimg.com/big/c1/e5k74rbxbc1.jpg http://mzimg.com/big/91/e5k75a7di91.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560131-0mw_150x150_pc.jpg http://cdn.babadu.ru/upload/iblock/e66/9.4.jpg http://mmedia.ozone.ru/multimedia/1017667215.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p659065-0mw_150x150_pc.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560132-0mw_150x150_pc.jpg</td><td></td><td>розовый</td></tr>
+<tr class="odd"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>310675</td><td>310675-розовый</td><td>Самокат Razor A125</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>4 389,0</td><td>11</td><td>Вес (кг): 2.7; регулировка высоты руля; складываемый; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: алюминий; Кол-во колес: 2-х колесный; Возраст, от (лет): 3; Макс. нагрузка (кг): 50; Тип: самокат Рейтинг модели: 3 из 5 (5 оценок)</td><td>Razor</td><td>310675_-293525400.jpg e8cro1me921_-567229509.jpg e8croah3v41_828867760.jpg e8crogwz9u1_-709501462.jpg e8crplnha81_-1214143012.jpg e8crpuwa5u1_-1337436532.jpg p560140-0mw_150x150_pc_-1525793542.jpg 15.2_-67389029.jpg 450056163_w640_h640_cid2783552_pid301650034-87494ab7_-446600179.jpg p560142-0mw_150x150_pc_-1531130004.jpg p560141-0mw_150x150_pc_-1522520903.jpg</td><td>http://magazilla.ru/jpg_zoom1/310675.jpg http://mzimg.com/big/21/e8cro1me921.jpg http://mzimg.com/big/41/e8croah3v41.jpg http://mzimg.com/big/u1/e8crogwz9u1.jpg http://mzimg.com/big/81/e8crplnha81.jpg http://mzimg.com/big/u1/e8crpuwa5u1.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560140-0mw_150x150_pc.jpg http://cdn.babadu.ru/upload/iblock/4f4/15.2.jpg http://images.ru.prom.st/450056163_w640_h640_cid2783552_pid301650034-87494ab7.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560142-0mw_150x150_pc.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560141-0mw_150x150_pc.jpg</td><td></td><td>розовый</td></tr>
+<tr class="even"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>289298</td><td>289298-розовый</td><td>Самокат Razor Spark</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>6 589,0</td><td>4</td><td>Вес (кг): 2.7; Размеры (см): 92х29х84; регулировка высоты руля; складываемый; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: алюминий; Кол-во колес: 2-х колесный; Возраст, от (лет): 4; Макс. нагрузка (кг): 65; Тип: самокат</td><td>Razor</td><td>289298_-1305092390.jpg e5k847pu6f1_135294091.jpg e5k84lcgzo1_-310723693.jpg e5k88d73bi1_-996696520.jpg e5k890o2af1_1371563329.jpg e5k85e4fgj1_191197786.jpg</td><td>http://magazilla.ru/jpg_zoom1/289298.jpg http://mzimg.com/big/f1/e5k847pu6f1.jpg http://mzimg.com/big/o1/e5k84lcgzo1.jpg http://mzimg.com/big/i1/e5k88d73bi1.jpg http://mzimg.com/big/f1/e5k890o2af1.jpg http://mzimg.com/big/j1/e5k85e4fgj1.jpg</td><td></td><td>розовый</td></tr>
+<tr class="odd"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>902005</td><td>902005-розовый</td><td>Самокат Razor T3</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>3 537,6</td><td>14</td><td>Вес (кг): 2.2; Размеры (см): 57x27x68; Платформа (см): 30x12; складываемый; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: сталь; Кол-во колес: 3-х колесный; Возраст, от (лет): 3; Макс. нагрузка (кг): 22; Тип: кикборд</td><td>Razor</td><td>902005_-1878194415.jpg f779ufyd5j1_-1393249365.jpeg f779ulujjv1_1860796955.jpeg f779upxua91_-1449994817.jpg f779uszkrv1_-1447453964.jpg f779uxh9f51_401700464.jpg f779v0fto71_1564788490.jpg f779v33xg11_-1138203288.jpg f779v6dtcx1_-773146624.jpg f779v9jqv61_-1115938375.jpg p560158-0mw_150x150_pc_-1402773790.jpg p560159-0mw_150x150_pc_-1408020831.jpg</td><td>http://magazilla.ru/jpg_zoom1/902005.jpg http://mzimg.com/big/j1/f779ufyd5j1.jpeg http://mzimg.com/big/v1/f779ulujjv1.jpeg http://mzimg.com/big/91/f779upxua91.jpg http://mzimg.com/big/v1/f779uszkrv1.jpg http://mzimg.com/big/51/f779uxh9f51.jpg http://mzimg.com/big/71/f779v0fto71.jpg http://mzimg.com/big/11/f779v33xg11.jpg http://mzimg.com/big/x1/f779v6dtcx1.jpg http://mzimg.com/big/61/f779v9jqv61.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560158-0mw_150x150_pc.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560159-0mw_150x150_pc.jpg</td><td></td><td>розовый</td></tr>
+<tr class="even"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>550929</td><td>550929-розовый</td><td>Самокат Razor S</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>4 161,3</td><td>15</td><td>Вес (кг): 2.76; Размеры (см): 61x29x83; складываемый; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: алюминий; Кол-во колес: 2-х колесный; Возраст, от (лет): 5; Макс. нагрузка (кг): 100; Тип: самокат</td><td>Razor</td><td>550929_1303846905.jpg eq37ltspew1_-303768928.jpg eq37lcmfa81_79681300.jpg eq37li2mpk1_1274725652.jpg eq37llz3421_-113413182.jpg eq37lphtwa1_-1736007223.jpg 1014399385_1488436693.jpg 1014439451_941422049.jpg 1014399388_874146877.jpg</td><td>http://magazilla.ru/jpg_zoom1/550929.jpg http://mzimg.com/big/w1/eq37ltspew1.jpg http://mzimg.com/big/81/eq37lcmfa81.jpg http://mzimg.com/big/k1/eq37li2mpk1.jpg http://mzimg.com/big/21/eq37llz3421.jpg http://mzimg.com/big/a1/eq37lphtwa1.jpg http://mmedia.ozone.ru/multimedia/soft_other/1014399385.jpg http://mmedia.ozone.ru/multimedia/1014439451.jpg http://mmedia.ozone.ru/multimedia/1014399388.jpg</td><td></td><td>розовый</td></tr>
+<tr class="odd"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>289389</td><td>289389-розовый</td><td>Самокат Razor PowerWing</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>8 690,0</td><td>3</td><td>Вес (кг): 5.4; Размеры (см): 81x56x87; складываемый; Тормоз: ручной; Колеса: полиуретановые; Материал рамы: сталь; Кол-во колес: 3-х колесный; Возраст, от (лет): 5; Макс. нагрузка (кг): 65; Тип: трайк</td><td>Razor</td><td>289389_-137560673.jpg e5kbl6hsqz1_-35072661.jpg e5kbpnm37j1_-829023860.jpg e5kbqx4juu1_1893525433.jpg e5kbr6p9c11_-765881091.jpg powerwing-pink-1_-444059974.jpg pw_black_prod_1473304781.jpg Razor_DLX_multi_211302631.jpg</td><td>http://magazilla.ru/jpg_zoom1/289389.jpg http://mzimg.com/big/z1/e5kbl6hsqz1.jpg http://mzimg.com/big/j1/e5kbpnm37j1.jpg http://mzimg.com/big/u1/e5kbqx4juu1.jpg http://mzimg.com/big/11/e5kbr6p9c11.jpg http://www.bumba.ru/media/catalog/product/cache/1/image/600x/9df78eab33525d08d6e5fb8d27136e95/p/o/powerwing-pink-1.jpg http://www.bumba.ru/media/catalog/product/cache/1/image/600x/9df78eab33525d08d6e5fb8d27136e95/p/w/pw_black_prod.jpg http://maminasumka.ru/assets/images/products/Razor_DLX_multi.jpg</td><td></td><td>розовый</td></tr>
+<tr class="even"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>901882</td><td>901882-розовый</td><td>Самокат Razor Lil Pop</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>2 862,2</td><td>3</td><td>Вес (кг): 2.1; Размеры (см): 52x27x66; Платформа (см): 25x13; светящиеся колеса / дека; складываемый; Тормоз: отсутствует; Колеса: полиуретановые; Материал рамы: пластик; Кол-во колес: 3-х колесный; Возраст, от (лет): 2; Макс. нагрузка (кг): 20; Тип: кикборд</td><td>Razor</td><td>901882_-897169660.jpg</td><td>http://magazilla.ru/jpg_zoom1/901882.jpg</td><td></td><td>розовый</td></tr>
+<tr class="odd"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>1157544</td><td>1157544-розовый</td><td>Самокат Razor Lil E</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>8 239,0</td><td>14</td><td>сидение; Тормоз: отсутствует; Колеса: полиуретановые; Материал рамы: сталь; Кол-во колес: 3-х колесный; Макс. скорость (км/час): 3; Возраст, от (лет): 3; Макс. нагрузка (кг): 20; Тип: электросамокат</td><td>Razor</td><td>1157544_-1069649289.jpg fhh7zig56q1_250336795.jpg fhh7zik4a11_-446812100.jpg fhh7ziowra1_1701373953.jpg fhh81tmhk11_1624414131.jpg kop12_razor_r_043_-1454558540.jpg kop12_razor_r_040_1934288422.jpg</td><td>http://magazilla.ru/jpg_zoom1/1157544.jpg http://mzimg.com/big/q1/fhh7zig56q1.jpg http://mzimg.com/big/11/fhh7zik4a11.jpg http://mzimg.com/big/a1/fhh7ziowra1.jpg http://mzimg.com/big/11/fhh81tmhk11.jpg http://cdn.babadu.ru/upload/iblock/29f/kop12_razor_r_043.jpg http://cdn.babadu.ru/upload/iblock/0b4/kop12_razor_r_040.jpg</td><td></td><td>розовый</td></tr>
+<tr class="even"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Самокаты</td><td>289316</td><td>289316-розовый</td><td>Самокат Razor E90</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Самокаты</td><td>15 290,0</td><td>11</td><td>Вес (кг): 9.8; Размеры (см): 79x36x84; Платформа (см): 38х12; подставка; Тормоз: ножной; Колеса: полиуретановые; Материал рамы: сталь; Кол-во колес: 2-х колесный; Дальность пробега (км): 10; Макс. скорость (км/час): 15; Возраст, от (лет): 8; Макс. нагрузка (кг): 55; Тип: электросамокат Рейтинг модели: 5 из 5 (5 оценок)</td><td>Razor</td><td>289316_-669573454.jpg e5k8zwbgzd1_-536070378.jpg e5k90csdi61_-442083473.jpg e5k90nekd91_2092011035.jpg e5k91gfeu11_720996371.jpg e5k91o6tt71_1033395973.jpg e5k92tumj21_832181048.jpg e5k93h2do81_322425114.jpg e5k94m8cnh1_-1404235410.jpg e5k94wcdb41_1461559971.jpg p560176-0mw_150x150_pc_-226769740.jpg kop12_002_1736829186.jpg</td><td>http://magazilla.ru/jpg_zoom1/289316.jpg http://mzimg.com/big/d1/e5k8zwbgzd1.jpg http://mzimg.com/big/61/e5k90csdi61.jpg http://mzimg.com/big/91/e5k90nekd91.jpg http://mzimg.com/big/11/e5k91gfeu11.jpg http://mzimg.com/big/71/e5k91o6tt71.jpg http://mzimg.com/big/21/e5k92tumj21.jpg http://mzimg.com/big/81/e5k93h2do81.jpg http://mzimg.com/big/h1/e5k94m8cnh1.jpg http://mzimg.com/big/41/e5k94wcdb41.jpg http://s.techport.ru/_mod_files/ce_images/eshop/generated/p560176-0mw_150x150_pc.jpg http://cdn.babadu.ru/upload/iblock/71d/kop12_002.jpg</td><td></td><td>розовый</td></tr>
+<tr class="odd"><td>Детские товары и игрушки</td><td>Активный отдых и улица</td><td>Скейтборды</td><td>770622</td><td>770622-розовый</td><td>Скейтборд Razor RipStik Brights</td><td>Детские товары и игрушки-&gt;Активный отдых и улица-&gt;Скейтборды</td><td>6 325,0</td><td>8</td><td>Класс подшипников: ABEC 5; Материал колес: полиуретан; Материал подвески: алюминий; Материал деки: пластик; Размер деки ДхШхТ (мм): 864х229; Тип: роллерсерф</td><td>Razor</td><td>770622_-134766045.jpg f1s2pm3kg71_-75898361.jpg f1s2pr0ofj1_-1232107982.jpg razor-bright-krasnij-2_1__1927706742.jpg razor-bright-oranjevij-2_1__528428149.jpg ripstikg_action4lo_398867001.jpg ripstikg_action3lo_880627291.jpg RipStik_Bright_2064612087.jpg</td><td>http://magazilla.ru/jpg_zoom1/770622.jpg http://mzimg.com/big/71/f1s2pm3kg71.jpg http://mzimg.com/big/j1/f1s2pr0ofj1.jpg http://static-eu.insales.ru/images/products/1/2175/91629695/razor-bright-krasnij-2_1_.jpg http://static-eu.insales.ru/images/products/1/3443/91630963/razor-bright-oranjevij-2_1_.jpg http://cdn.babadu.ru/upload/iblock/ff0/ripstikg_action4lo.jpg http://cdn.babadu.ru/upload/iblock/550/ripstikg_action3lo.jpg http://maminasumka.ru/assets/images/products/RipStik_Bright.jpg</td><td></td><td>розовый</td></tr>
+    </tbody>
+  </table>
+  <div class="no-results" id="noResults">Ничего не найдено</div>
+</div>
+<script>
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const rows = document.querySelectorAll('#dataTable tbody tr');
+  let vis = 0;
+  rows.forEach(row => {
+    const match = !q || row.textContent.toLowerCase().includes(q);
+    row.classList.toggle('hidden', !match);
+    if (match) vis++;
+  });
+  document.getElementById('visCount').textContent = vis;
+  document.getElementById('noResults').style.display = vis === 0 ? 'block' : 'none';
+}
+</script>
+</body>
+</html>
